@@ -1,0 +1,12 @@
+Change the following:
+https://colab.research.google.com/drive/1EFL1qTQqs6uFyVlzKcnO8XmUtuthQAY4
+https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10
+(a) Change num_classes = 6
+(b) fine_tune_checkpoint : "gs://seed-bucket/data/model.ckpt"
+(c)  train_input_reader
+     (c.1) input_path: "gs://seed-bucket/data/train.record"
+     (c.2) label_map_path: "gs://seed-bucket/data/label_map.pbtxt"
+(d) eval_input_reader:
+      (d.1)  input_path: "gs://seed-bucket/data/test.record"
+      (d.2)  label_map_path: "gs://seed-bucket/data/label_map.pbtxt"
+(e) Change num_examples to the number of images you have in the \images\test directory.
