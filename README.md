@@ -12,7 +12,7 @@ E.g. Mike's details
     export ZONE=us-central1-a
     export INSTANCE_NAME=vm-obj-det-tpu-ubuntu
 ```
-E.g. MM
+E.g. 
 ```bash
     export PROJECT_ID=tpu-training-02
     export ZONE=us-central1-a
@@ -20,7 +20,6 @@ E.g. MM
 ```
 
 
+2)
 
 
-
-2) 
