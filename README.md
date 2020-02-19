@@ -107,7 +107,7 @@ example - Michael
 ```
 example - Mambwe
 ```bash
-
+    export BUCKET=mm-tpu-cards-training
 ```
 # Make sure the pipeline.config (Michael) and pipeline0.config (Mambwe) are configured for YOUR_BUCKET
 # Go to cards-training/pipeline
