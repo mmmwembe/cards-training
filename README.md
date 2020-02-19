@@ -165,9 +165,6 @@ example - Mambwe
     cd /tensorflow/models/research
 ```
 
-<<<<<<< HEAD
-2)
-=======
 24) Package the Tensorflow Object Detection code, run the following commands from the tensorflow/models/research/ directory:
 # From models/research
 ```bash
@@ -235,7 +232,6 @@ example - Mambwe
     --pipeline_config_path=gs://${BUCKET}/data/pipeline0.config \
     --checkpoint_dir=gs://${BUCKET}/train
 ```
->>>>>>> ad99335b6271ddf6429902fe1b2d5983a2780d80
 
 27) Check status of the training
 ```bash
@@ -243,8 +239,6 @@ example - Mambwe
      gcloud ai-platform jobs describe $JOB_NAME
 ```
 
-<<<<<<< HEAD
-=======
 29) In another VM, run tensorboard
 # Run Tensorboard in the VM host and not the docker container
 ```bash
@@ -265,4 +259,3 @@ example - Mambwe
     export BUCKET=mm-tpu-cards-training
     tensorboard --logdir=gs://${BUCKET}/train --host=localhost --port=8080
 ```
->>>>>>> ad99335b6271ddf6429902fe1b2d5983a2780d80
