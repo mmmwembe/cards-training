@@ -11,6 +11,8 @@ https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Trai
       (d.2)  label_map_path: "gs://seed-bucket/data/label_map.pbtxt"
 (e) Change num_examples to the number of images you have in the \images\test directory.
 
+(f) num_examples in eval_config = understood to be equal to the number of images in test/eval
 
+(g) batch_size: 128 from the train_config
 Notes:
 [Configuring Jobs](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/configuring_jobs.md)
