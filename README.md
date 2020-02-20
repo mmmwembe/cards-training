@@ -297,7 +297,7 @@ example - Mambwe
     cd ../..
 ```
 
-33) Generate optimized TFLite model
+34) Generate optimized TFLite model
 
 ```bash
  time bazel run -c opt tensorflow/contrib/lite/toco:toco -- \
@@ -311,4 +311,9 @@ example - Mambwe
     --std_values=128 \
     --change_concat_input_ranges=false \
     --allow_custom_ops
+```
+
+35) Copy TFLite models (tflite_graph.pbtxt and tflite_graph.pb, detect.tflite) to gs://${BUCKET}/tflite/
+```bash
+     gsutil cp $OUTPUT_DIR/* gs://${BUCKET}/tflite/
 ```
