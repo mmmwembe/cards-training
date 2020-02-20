@@ -14,7 +14,7 @@ E.g. Mike's details
 ```
 E.g. 
 ```bash
-    export PROJECT_ID=tpu-training-02
+    export PROJECT_ID=tpu-training-2
     export ZONE=us-central1-a
     export INSTANCE_NAME=obj-det-30min-tpu-ubuntu-2019-11-12-01-5028-4460
 ```
@@ -98,6 +98,7 @@ E.g.
 #     ----train
 #     ----tflite
 #     ----android-app
+#     ----graph
 ```bash
     export BUCKET=<YOUR_BUCKET_NAME>
 ```
@@ -118,7 +119,9 @@ example - Mambwe
     gsutil cp tfrecords/train.record gs://${BUCKET}/data/
     gsutil cp tfrecords/test.record  gs://${BUCKET}/data/
     gsutil cp labels/labelmap.pbtxt  gs://${BUCKET}/data/
-    gsutil cp pipeline/pipeline.config gs://${BUCKET}/data/ # Michael use pipeline.config; Mambwe use pipeline0.config
+
+    gsutil cp pipeline/pipeline.config gs://${BUCKET}/data/ # Michael use pipeline.config; 
+    gsutil cp pipeline/pipeline0.config gs://${BUCKET}/data/ #Mambwe use pipeline0.config
 ```
 
 16) Check that TFrecords and labelmap.pbtxt are in BUCKET data directory
@@ -129,7 +132,7 @@ example - Mambwe
 17) change directory to tmp
 ```bash
     cd /tmp
-    rm -r *.*
+    rm -r *
 ```
 
 18) Download SSD MobileNet model and tar it
@@ -153,6 +156,8 @@ example - Mambwe
 21) Assign TPU service account
 ```bash
     export TPU_SVC_ACCOUNT=<YOUR_TPU_SVC_ACCOUNT_NAME>
+
+    export TPU_SVC_ACCOUNT=service-402993653798@cloud-tpu.iam.gserviceaccount.com
 ```
 
 22) Grant the ml.serviceAgent role to your TPU service account
@@ -258,4 +263,23 @@ example - Mambwe
     gcloud init
     export BUCKET=mm-tpu-cards-training
     tensorboard --logdir=gs://${BUCKET}/train --host=localhost --port=8080
+```
+30) Set up Transfer Variables
+```bash
+    export CONFIG_FILE=gs://${BUCKET}/data/pipeline.config
+    export CHECKPOINT_PATH=gs://${BUCKET}/train/model.ckpt-2000
+    export OUTPUT_DIR=/tmp/tflite
+```
+31) Obtain Graph for tflite
+```bash
+    python object_detection/export_tflite_ssd_graph.py \
+    --pipeline_config_path=$CONFIG_FILE \
+    --trained_checkpoint_prefix=$CHECKPOINT_PATH \
+    --output_directory=$OUTPUT_DIR \
+    --add_postprocessing_op=true
+```
+
+32) Transfer tflite_graph to gs://BUCKET/graph
+```bash
+    gsutil cp -r /tmp/tflite/* gs://${BUCKET}/tflite_graph/
 ```
