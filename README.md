@@ -320,9 +320,11 @@ example - Mambwe
 
 36) QA Test for TFlite Model Prior to Deployment
 ## References:
-[testing tflite model] (https://medium.com/towards-artificial-intelligence/testing-tensorflow-lite-image-classification-model-e9c0100d8de3)
-[part 1 - testing tflite]  (https://thinkmobile.dev/testing-tensorflow-lite-image-classification-model/)
-[part 2 - testing tflite]  (https://medium.com/towards-artificial-intelligence/automate-testing-of-tensorflow-lite-model-implementation-5d1e919f7e07)
+[testing tflite model](https://medium.com/towards-artificial-intelligence/testing-tensorflow-lite-image-classification-model-e9c0100d8de3)
+
+[part 1 - testing tflite](https://thinkmobile.dev/testing-tensorflow-lite-image-classification-model/)
+
+[part 2 - testing tflite](https://medium.com/towards-artificial-intelligence/automate-testing-of-tensorflow-lite-model-implementation-5d1e919f7e07)
 
 (a) Create qa_test model directory
 ```bash
@@ -332,19 +334,27 @@ example - Mambwe
 ```bash
     gsutil cp gs://${BUCKET}/tflite/detect.tflite qa_test
 ```
+(c) Set Model Variable
+```bash
+    TFLITE_QUANT_MODEL="qa_test/detect.tflite"
+```
+(d) Initialize Tflite model
+```bash
+    tflite_interpreter = tf.lite.Interpreter(model_path=TFLITE_MODEL)
+    input_details = tflite_interpreter.get_input_details()
+    output_details = tflite_interpreter.get_output_details()
 
-TFLITE_MODEL = "tflite_models/flowers.tflite"
-TFLITE_QUANT_MODEL = "tflite_models/flowers_quant.tflite" qa_test
+    print("== Input details ==")
+    print("shape:", input_details[0]['shape'])
+    print("type:", input_details[0]['dtype'])
+    print("\n== Output details ==")
+    print("shape:", output_details[0]['shape'])
+    print("type:", output_details[0]['dtype'])
 ```
 
-tflite_interpreter = tf.lite.Interpreter(model_path=TFLITE_MODEL)
-
-input_details = tflite_interpreter.get_input_details()
-output_details = tflite_interpreter.get_output_details()
-
-print("== Input details ==")
-print("shape:", input_details[0]['shape'])
-print("type:", input_details[0]['dtype'])
-print("\n== Output details ==")
-print("shape:", output_details[0]['shape'])
-print("type:", output_details[0]['dtype'])
+# >> == Input details ==
+# >> shape:  [1, 300, 300, 3]
+# >> type: <class 'uint8'>
+# >> == Output details ==
+# >> shape: [1 4]
+# >> type: <class 'numpy.float32'>
