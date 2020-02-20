@@ -265,12 +265,20 @@ example - Mambwe
     tensorboard --logdir=gs://${BUCKET}/train --host=localhost --port=8080
 ```
 30) Set up Transfer Variables
+# Michael
 ```bash
     export CONFIG_FILE=gs://${BUCKET}/data/pipeline.config
     export CHECKPOINT_PATH=gs://${BUCKET}/train/model.ckpt-2000
     export OUTPUT_DIR=/tmp/tflite
 ```
+# Mambwe
+```bash
+    export CONFIG_FILE=gs://${BUCKET}/data/pipeline0.config
+    export CHECKPOINT_PATH=gs://${BUCKET}/train/model.ckpt-2000
+    export OUTPUT_DIR=/tmp/tflite
+```  
 31) Obtain Graph for tflite
+
 ```bash
     python object_detection/export_tflite_ssd_graph.py \
     --pipeline_config_path=$CONFIG_FILE \
@@ -282,4 +290,25 @@ example - Mambwe
 32) Transfer tflite_graph to gs://BUCKET/graph
 ```bash
     gsutil cp -r /tmp/tflite/* gs://${BUCKET}/tflite_graph/
+```
+
+33) Change directory to tensorflow
+```bash
+    cd ../..
+```
+
+33) Generate optimized TFLite model
+
+```bash
+ time bazel run -c opt tensorflow/contrib/lite/toco:toco -- \
+    --input_file=$OUTPUT_DIR/tflite_graph.pb \
+    --output_file=$OUTPUT_DIR/detect.tflite \
+    --input_shapes=1,300,300,3 \
+    --input_arrays=normalized_input_image_tensor \
+    --output_arrays='TFLite_Detection_PostProcess','TFLite_Detection_PostProcess:1','TFLite_Detection_PostProcess:2','TFLite_Detection_PostProcess:3'  \
+    --inference_type=QUANTIZED_UINT8 \
+    --mean_values=128 \
+    --std_values=128 \
+    --change_concat_input_ranges=false \
+    --allow_custom_ops
 ```
