@@ -31,7 +31,7 @@ E.g.
 
 4) List docker images
 ```bash
-    sudo docker image ls -a
+    docker image list
 ```
 
 5) Set Docker Image Variable
@@ -340,7 +340,7 @@ example - Mambwe
 ```
 (d) Initialize Tflite model
 ```bash
-    tflite_interpreter = tf.lite.Interpreter(model_path=TFLITE_MODEL)
+    tflite_interpreter = tf.lite.Interpreter(model_path=$TFLITE_QUANT_MODEL)
     input_details = tflite_interpreter.get_input_details()
     output_details = tflite_interpreter.get_output_details()
 
