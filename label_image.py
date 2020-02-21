@@ -51,11 +51,11 @@ if __name__ == '__main__':
       help='name of file containing labels')
   parser.add_argument(
       '--input_mean',
-      default=127.5, type=float,
+      default=128, type=np.uint8,
       help='input_mean')
   parser.add_argument(
       '--input_std',
-      default=128, type=float,
+      default=128, type=np.uint8,
       help='input standard deviation')
   args = parser.parse_args()
 
