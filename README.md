@@ -358,3 +358,18 @@ example - Mambwe
 # >> == Output details ==
 # >> shape: [1 4]
 # >> type: <class 'numpy.float32'>
+
+A) in VM Install tensorflow lite interpreter-only package
+# https://www.tensorflow.org/lite/guide/python
+```bash
+    pip3 install https://dl.google.com/coral/python/tflite_runtime-2.1.0.post1-cp35-cp35m-linux_x86_64.whl
+```
+B) Modify label_image.py as below:
+
+```bash
+# Before
+import tensorflow as tf
+# After 
+import tflite_runtime.interpreter as tflite
+
+```
