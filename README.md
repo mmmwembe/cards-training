@@ -375,3 +375,4 @@ import tensorflow as tf
 import tflite_runtime.interpreter as tflite
 
 ```
+C) Run label_image.py
