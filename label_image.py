@@ -96,7 +96,8 @@ if __name__ == '__main__':
   labels = load_labels(args.label_file)
   for i in top_k:
     if floating_model:
-      print('{:08.6f}: {}'.format(float(results[i]), labels[i]))
+      # print('{:08.6f}: {}'.format(float(results[i]), labels[i]))
+      print('this is the floating model results section')
     else:
       # print('{:08.6f}: {}'.format(float(results[i] / 255.0), labels[i]))
       print('{}: {}'.formart(results[i], labels[i]))
