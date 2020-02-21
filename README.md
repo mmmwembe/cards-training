@@ -376,3 +376,9 @@ import tflite_runtime.interpreter as tflite
 
 ```
 C) Run label_image.py
+
+# Output Arrays from model predictions
+# TFLite_Detection_PostProcess =Bounding Boxes
+# TFLite_Detection_PostProcess:1=Detected Classes
+# TFLite_Detection_PostProcess:2=Classes Precision
+# TFLite_Detection_PostProcess:3=Number of Detected Objects
