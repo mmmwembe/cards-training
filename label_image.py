@@ -100,4 +100,4 @@ if __name__ == '__main__':
       print('this is the floating model results section')
     else:
       # print('{:08.6f}: {}'.format(float(results[i] / 255.0), labels[i]))
-      print('{}: {}'.formart(results[i], labels[i]))
+      print('{}: {}'.format(results[i], labels[i]))
