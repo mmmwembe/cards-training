@@ -108,4 +108,5 @@ if __name__ == '__main__':
       # print('{:08.6f}: {}'.format(float(results[i] / 255.0), labels[i]))
       # print('{:08.6f}: {}'.format(float(results[i]/255.0), labels[i]))
       print(results[i])
-      print(labels[i])
+      print(labels[1])
+      print("i :", i)
