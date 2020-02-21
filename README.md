@@ -359,6 +359,8 @@ example - Mambwe
 # >> shape: [1 4]
 # >> type: <class 'numpy.float32'>
 
+# https://www.tensorflow.org/lite/convert/python_api#api
+
 A) in VM Install tensorflow lite interpreter-only package
 # https://www.tensorflow.org/lite/guide/python
 ```bash

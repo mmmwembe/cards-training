@@ -68,6 +68,12 @@ if __name__ == '__main__':
   # check the type of the input tensor
   floating_model = input_details[0]['dtype'] == np.float32
 
+  print("floating_model : ", floating_model)
+
+  quant_model = input_details[0]['dtype'] == np.uint8
+
+  print("quant_model : ", quant_model)
+
   # NxHxWxC, H:1, W:2
   height = input_details[0]['shape'][1]
   width = input_details[0]['shape'][2]
@@ -92,4 +98,5 @@ if __name__ == '__main__':
     if floating_model:
       print('{:08.6f}: {}'.format(float(results[i]), labels[i]))
     else:
-      print('{:08.6f}: {}'.format(float(results[i] / 255.0), labels[i]))
+      # print('{:08.6f}: {}'.format(float(results[i] / 255.0), labels[i]))
+      print('{}: {}'.formart(results[i], labels[i]))
