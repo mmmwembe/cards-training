@@ -31,7 +31,9 @@ if input_details[0]['dtype'] == np.uint8:
 height = input_details[0]['shape'][1]
 width = input_details[0]['shape'][2]
 
-img = Image.open(TEST_IMAGE_FILE)
+img = Image.open( TEST_IMAGE_FILE)
+img.load()
+# img = Image.open(TEST_IMAGE_FILE)
 img = img.resize((width, height))
 
 input_mean = 128
