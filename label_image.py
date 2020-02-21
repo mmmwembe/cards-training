@@ -65,6 +65,10 @@ if __name__ == '__main__':
   input_details = interpreter.get_input_details()
   output_details = interpreter.get_output_details()
 
+  # print input and output details
+  print("==Input Data==")
+  print("shape: ", input_details[0]['shape'])
+
   # check the type of the input tensor
   floating_model = input_details[0]['dtype'] == np.float32
 
@@ -100,4 +104,6 @@ if __name__ == '__main__':
       print('this is the floating model results section')
     else:
       # print('{:08.6f}: {}'.format(float(results[i] / 255.0), labels[i]))
-      print('{:08.6f}: {}'.format(float(results[i]/255.0), labels[i]))
+      # print('{:08.6f}: {}'.format(float(results[i]/255.0), labels[i]))
+      print(results[i])
+      print(labels[i])
