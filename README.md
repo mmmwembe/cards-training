@@ -375,21 +375,21 @@ C) Set BUCKET variable
 
     export BUCKET=tpu-cards-training    # Michael
 
-    export BUCKET=mm-tpu-cards-training # Michael
+    export BUCKET=mm-tpu-cards-training # Mambwe
 ```
-D) Download detect.tflite, labels.txt 
+D) Download detect.tflite to /tmp
 
 ```bash
-    gsutil cp gs://{BUCKET}/tflite/detect.tflite /tmp/
-    gsutil cp gs://{BUCKET}/tflite/labels.txt /tmp/
+    gsutil cp gs://$BUCKET/tflite/detect.tflite /tmp/
 ```
 E) Git Clone cards-training
 ```bash
     git clone https://github.com/mmmwembe/cards-training.git
 ```
-F) Download test images to /tmp
+F) Download test images and labels.txt to /tmp
 ```bash
     cp cards-training/images/real-test/* /tmp/
+    cp cards-training/labels/labels.txt /tmp/
 ```
 G) Run label_image.py
 ```bash
