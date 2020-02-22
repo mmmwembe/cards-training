@@ -148,4 +148,12 @@ if __name__ == '__main__':
   #    label_id = detection_classes[0,i]
   #    print('label_id : ', label_id)
 
+ # References: 1) https://github.com/tensorflow/tensorflow/issues/34761
+ #             2) https://stackoverflow.com/questions/59143641/how-to-get-useful-data-from-tflite-object-detection-python
+ # The TFLite_Detection_PostProcess custom op node has four outputs
+ # detection_boxes: a tensor of shape [1, num_boxes, 4] with normalized coordinates
+ # detection_classes: a tensor of shape [1, num_boxes] containing class prediction for each box
+ # detection_scores: a tensor of shape [1, num_boxes]
+ # num_boxes: a tensor of size 1 containing the number of detected boxes
+
 
