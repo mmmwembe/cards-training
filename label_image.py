@@ -116,7 +116,7 @@ if __name__ == '__main__':
   print(input_details)
   print()
   print("output details")
-  pp.print(output_details)
+  pp.pprint(output_details)
   print()
 
   print(output_data.shape)
