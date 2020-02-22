@@ -24,6 +24,8 @@ import numpy as np
 
 from PIL import Image
 
+import pprint as pp
+
 #import tensorflow as tf # TF2
 import tflite_runtime.interpreter as tflite
 
@@ -114,7 +116,7 @@ if __name__ == '__main__':
   print(input_details)
   print()
   print("output details")
-  print(output_details)
+  pp.print(output_details)
   print()
 
   print(output_data.shape)
