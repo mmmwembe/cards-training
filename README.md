@@ -366,6 +366,36 @@ A) in VM Install tensorflow lite interpreter-only package
 ```bash
     pip3 install https://dl.google.com/coral/python/tflite_runtime-2.1.0.post1-cp35-cp35m-linux_x86_64.whl
 ```
+B) Gcloud init
+```bash
+    gcloud init
+```
+C) Set BUCKET variable
+```bash
+
+    export BUCKET=tpu-cards-training    # Michael
+
+    export BUCKET=mm-tpu-cards-training # Michael
+```
+D) Download detect.tflite, labels.txt 
+
+```bash
+    gsutil cp gs://{BUCKET}/tflite/detect.tflite /tmp/
+    gsutil cp gs://{BUCKET}/tflite/labels.txt /tmp/
+```
+E) Git Clone cards-training
+```bash
+    git clone https://github.com/mmmwembe/cards-training.git
+```
+F) Download test images to /tmp
+```bash
+    cp cards-training/images/real-test/* /tmp/
+```
+G) Run label_image.py
+```bash
+   python3 label_image.py
+```
+
 B) Modify label_image.py as below:
 
 ```bash
