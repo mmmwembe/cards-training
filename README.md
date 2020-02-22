@@ -395,6 +395,8 @@ G) Run label_image.py
 ```bash
    python3 label_image.py
 ```
+H) Import module
+```
 
 B) Modify label_image.py as below:
 
