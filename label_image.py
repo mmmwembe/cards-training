@@ -100,13 +100,23 @@ if __name__ == '__main__':
   labels = load_labels(args.label_file)
   print("labels :", labels)
 
-  for i in top_k:
-    if floating_model:
-      # print('{:08.6f}: {}'.format(float(results[i]), labels[i]))
-      print('this is the floating model results section')
-    else:
-      # print('{:08.6f}: {}'.format(float(results[i] / 255.0), labels[i]))
-      # print('{:08.6f}: {}'.format(float(results[i]/255.0), labels[i]))
-      print(results[i])
-      print(labels[1])
-      print("i :", i)
+  #for i in top_k:
+  #  if floating_model:
+  #    # print('{:08.6f}: {}'.format(float(results[i]), labels[i]))
+  #    print('this is the floating model results section')
+  # else:
+  #    # print('{:08.6f}: {}'.format(float(results[i] / 255.0), labels[i]))
+  #    # print('{:08.6f}: {}'.format(float(results[i]/255.0), labels[i]))
+  #    print(results[i])
+  #    print(labels[1])
+  #    print("i :", i)
+  print("input details")
+  print(input_details)
+  print()
+  print("output details")
+  print(output_details)
+  print()
+
+  print(output_data.shape)
+  print()
+  print(output_data)
