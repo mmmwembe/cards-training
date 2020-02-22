@@ -128,10 +128,24 @@ if __name__ == '__main__':
   detection_scores = interpreter.get_tensor(output_details[2]['index'])
   num_boxes = interpreter.get_tensor(output_details[2]['index'])
 
+  print('detection_boxes')
+  print('detection boxes: ', detection_boxes)
+
+  print('detection_classes')
+  print('detection_classes ', detection_classes)
+
+  print('detection_scores')
+  print('detection_scores ', detection_scores)
+
+  print('num_boxes')
+  print('num_boxes ', num_boxes)
+
+
+
   print("number of boxes: ", num_boxes)
-  for i in range(int(num_boxes[0])):
-    if detection_scores[0,i] > .5:
-      label_id = detection_classes[0,i]
-      print('label_id : ', label_id)
+  #for i in range(int(num_boxes[0])):
+  #  if detection_scores[0,i] > .5:
+  #    label_id = detection_classes[0,i]
+  #    print('label_id : ', label_id)
 
 
