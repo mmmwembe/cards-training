@@ -1,16 +1,8 @@
-# Copyright 2018 The TensorFlow Authors. All Rights Reserved.
+# label_image2.py modifies label_image.py by adding elements from
+# http://www.netosa.com/blog/2018/09/tensorflow-object-detection-with-lite.html
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# Author: Michael Mwembeshi
+# Date: 2/22/2020
 # ==============================================================================
 """label_image for tflite."""
 
@@ -126,9 +118,7 @@ if __name__ == '__main__':
   detection_boxes = interpreter.get_tensor(output_details[0]['index'])
   detection_classes = interpreter.get_tensor(output_details[1]['index'])
   detection_scores = interpreter.get_tensor(output_details[2]['index'])
-  num_boxes = interpreter.get_tensor(output_details[3]['index'])
-
-  num = int(interpreter.get_tensor(output_details[3]['index'])[0])
+  num_boxes = interpreter.get_tensor(output_details[2]['index'])
 
   print('detection_boxes')
   print('detection boxes: ', detection_boxes)
@@ -140,12 +130,11 @@ if __name__ == '__main__':
   print('detection_scores ', detection_scores)
 
   print('num_boxes')
-  print("number of boxes: ", num_boxes)
+  print('num_boxes ', num_boxes)
 
-  if(num > 0):
-      print('num: ', num)
-      print('classes :', detection_classes[0])
-      print('scores :', detection_scores[0])
+
+
+  print("number of boxes: ", num_boxes)
   #for i in range(int(num_boxes[0])):
   #  if detection_scores[0,i] > .5:
   #    label_id = detection_classes[0,i]
