@@ -419,6 +419,8 @@ C) Run label_image.py
 # -------------------------------------------------------------#
 # PART 2 - Test Model from tensorflow/models/research
 # -------------------------------------------------------------#
+# References: 
+# http://www.netosa.com/blog/2018/09/tensorflow-object-detection-with-lite.html
 
 1) Run VM, SSH into VM
 
@@ -499,7 +501,7 @@ C) Run label_image.py
     (b) protoc object_detection/protos/*.proto --python_out=.
     (c) From tensorflow/models/research/
         export PYTHONPATH=$PYTHONPATH:pwd:pwd/slim
-    (d) python object_detection/protos/label_map_util_test.py
+    (d) python object_detection/utils/label_map_util_test.py
 ```
 
 
