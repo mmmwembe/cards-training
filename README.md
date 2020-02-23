@@ -390,6 +390,7 @@ F) Download test images and labels.txt to /tmp
 ```bash
     cp cards-training/images/real-test/* /tmp/
     cp cards-training/labels/labels.txt /tmp/
+    cp cards-training/labels/labelmap.pbtxt /tmp/
 ```
 G) Run label_image.py
 ```bash
@@ -414,3 +415,58 @@ C) Run label_image.py
 # TFLite_Detection_PostProcess:1=Detected Classes
 # TFLite_Detection_PostProcess:2=Classes Precision
 # TFLite_Detection_PostProcess:3=Number of Detected Objects
+
+# -------------------------------------------------------------#
+# PART 2 - Test Model from tensorflow/models/research
+# -------------------------------------------------------------#
+
+1) Run VM, SSH into VM
+
+2) Run Docker Image
+
+3) Change directory to cd ..
+```bash
+    cd ..
+```
+4) Install Python Intepreter only package
+```bash
+
+     apt-get update
+
+     apt-get install sudo
+
+     sudo apt-get update
+
+     sudo apt-get -y install python3-pip
+
+     pip3 install https://dl.google.com/coral/python/tflite_runtime-2.1.0.post1-cp35-cp35m-linux_x86_64.whl
+
+     pip3 --version
+```
+
+5) Change directory to tensorflow/models/research
+```bash
+    cd tensorflow/models/research
+```
+
+6) Run Steps (B) to (G)
+```bash
+	gcloud init
+
+	export BUCKET=tpu-cards-training
+
+	gsutil cp gs://$BUCKET/tflite/detect.tflite /tmp/ 
+
+	git clone https://github.com/mmmwembe/cards-training.git
+
+    	cp cards-training/images/real-test/* /tmp/
+
+    	cp cards-training/labels/labels.txt /tmp/
+
+    	cp cards-training/labels/labelmap.pbtxt /tmp/
+```
+
+7) Run label_image2.py
+```bash
+    python3 cards-training/label_image2.py
+```

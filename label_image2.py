@@ -18,6 +18,9 @@ from PIL import Image
 
 import pprint as pp
 
+from object_detection.utils import label_map_util
+from object_detection.utils import visualization_utils as vis_util
+
 #import tensorflow as tf # TF2
 import tflite_runtime.interpreter as tflite
 
@@ -43,6 +46,16 @@ if __name__ == '__main__':
       '--label_file',
       default='/tmp/labels.txt',
       help='name of file containing labels')
+  parser.add_argument(
+      '-lm',
+      '--labelmap',
+      default='/tmp/labelmap.pbtxt',
+      help='name of labelmap a .pbtxt file')      
+  parser.add_argument(
+      '-n',
+      '--num_labels',
+      default= 6,
+      help='number of labels')   
   parser.add_argument(
       '--input_mean',
       default=128, type=np.uint8,
@@ -121,6 +134,12 @@ if __name__ == '__main__':
   num_boxes = interpreter.get_tensor(output_details[2]['index'])
 
   num = int(interpreter.get_tensor(output_details[3]['index'])[0])
+  label_map = label_map_util.load_labelmap(path_to_labelmap=args.labelmap)
+  categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=args.num_labels, use_display_name=True)
+  category_index = label_map_util.create_category_index(categories)
+
+
+
 
   print('detection_boxes')
   print('detection boxes: ', detection_boxes)
@@ -142,6 +161,16 @@ if __name__ == '__main__':
       print('num: ', num)
       print('classes :', detection_classes[0])
       print('scores :', detection_scores[0])
+
+  for i in range(num):
+      detection_classes[0][i]=detection_classes[0][i] + 1.0
+      id = int(detection_classes[0][i])
+      score=detection_scores[0][i]
+      name='none'
+      if(id in category_index):
+          s=category_index[id]
+          name=s['name']
+      print(name,'/',score)
 
   #for i in range(int(num_boxes[0])):
   #  if detection_scores[0,i] > .5:
