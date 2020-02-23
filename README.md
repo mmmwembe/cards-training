@@ -448,12 +448,22 @@ C) Run label_image.py
      pip3 install six
 ```
 
-5) Change directory to tensorflow/models/research
+5) Package the Tensorflow Object Detection code, run the following commands from the tensorflow/models/research/ directory:
+# From models/research
 ```bash
     cd tensorflow/models/research
+    bash object_detection/dataset_tools/create_pycocotools_package.sh /tmp/pycocotools
+    python setup.py sdist
+    (cd slim && python setup.py sdist)
 ```
 
-6) Run Steps (B) to (G)
+6) Run protoc
+```bash
+    protoc object_detection/protos/*.proto --python_out=.
+```
+
+
+7) Run Steps (B) to (G)
 ```bash
 
 	gcloud init
@@ -464,8 +474,16 @@ C) Run label_image.py
 
 	gsutil cp gs://$BUCKET/tflite/detect.tflite /tmp/ 
 
+
 	git clone https://github.com/mmmwembe/cards-training.git
 
+    # From tensorflow/models/research
+    # https://colab.research.google.com/drive/1k68pm1n-S1dhmdEVnS_8_4sMI0NvxFcg#scrollTo=Zc35e5IX2BQX
+    echo $PYTHONPATH
+    export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+    export PYTHONPATH=${PYTHONPATH}:${PWD}/:${PWD}/models
+    export PYTHONPATH=${PYTHONPATH}:${PWD}/:${PWD}/cards-training
+    echo $PYTHONPATH
     
     cp cards-training/images/real-test/* /tmp/
 
