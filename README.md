@@ -451,19 +451,23 @@ C) Run label_image.py
 
 6) Run Steps (B) to (G)
 ```bash
+
 	gcloud init
 
 	export BUCKET=tpu-cards-training
+
+    rm -r /tmp/*
 
 	gsutil cp gs://$BUCKET/tflite/detect.tflite /tmp/ 
 
 	git clone https://github.com/mmmwembe/cards-training.git
 
-    	cp cards-training/images/real-test/* /tmp/
+    
+    cp cards-training/images/real-test/* /tmp/
 
-    	cp cards-training/labels/labels.txt /tmp/
+    cp cards-training/labels/labels.txt /tmp/
 
-    	cp cards-training/labels/labelmap.pbtxt /tmp/
+    cp cards-training/labels/labelmap.pbtxt /tmp/
 ```
 
 7) Run label_image2.py
