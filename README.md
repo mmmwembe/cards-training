@@ -442,6 +442,10 @@ C) Run label_image.py
      pip3 install https://dl.google.com/coral/python/tflite_runtime-2.1.0.post1-cp35-cp35m-linux_x86_64.whl
 
      pip3 --version
+
+     sudo pip3 install Pillow
+
+     pip3 install six
 ```
 
 5) Change directory to tensorflow/models/research
@@ -469,6 +473,17 @@ C) Run label_image.py
 
     cp cards-training/labels/labelmap.pbtxt /tmp/
 ```
+7) Test that files are installed properly
+# https://github.com/tensorflow/models/issues/1990
+# http://www.netosa.com/blog/2018/09/tensorflow-object-detection-with-lite.html
+```bash
+    (a) git clone https://github.com/tensorflow/models 
+    (b) protoc object_detection/protos/*.proto --python_out=.
+    (c) From tensorflow/models/research/
+        export PYTHONPATH=$PYTHONPATH:pwd:pwd/slim
+    (d) python object_detection/protos/label_map_util_test.py
+```
+
 
 7) Run label_image2.py
 ```bash
