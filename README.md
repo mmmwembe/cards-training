@@ -423,6 +423,18 @@ C) Run label_image.py
 # http://www.netosa.com/blog/2018/09/tensorflow-object-detection-with-lite.html
 
 1) Run VM, SSH into VM
+```bash
+    export PROJECT_ID=project-2019-3mega-01
+    export ZONE=us-central1-a
+    export INSTANCE_NAME=vm-obj-det-tpu-ubuntu
+
+    gcloud compute instances start $INSTANCE_NAME --zone $ZONE
+
+    gcloud compute ssh --project $PROJECT_ID --zone $ZONE $INSTANCE_NAME
+
+    export DOCKER_IMG_NAME=detect-tf-image
+    sudo docker run --rm -it --privileged -p 6006:6006 $DOCKER_IMG_NAME
+```
 
 2) Run Docker Image
 
@@ -448,6 +460,8 @@ C) Run label_image.py
      sudo pip3 install Pillow
 
      pip3 install six
+
+     python3.7 -m pip install pip
 ```
 
 5) Package the Tensorflow Object Detection code, run the following commands from the tensorflow/models/research/ directory:
