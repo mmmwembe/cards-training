@@ -22,8 +22,16 @@ import pprint as pp
 from object_detection.utils import label_map_util
 from object_detection.utils import visualization_utils as vis_util
 
+
 import tensorflow as tf # TF2
 # import tflite_runtime.interpreter as tflite
+
+# patch tf1 into `utils.ops`
+utils_ops.tf = tf.compat.v1
+
+# Patch the location of gfile
+tf.gfile = tf.io.gfile
+
 
 def load_labels(filename):
   with open(filename, 'r') as f:
