@@ -523,3 +523,126 @@ C) Run label_image.py
 ```bash
     python3 cards-training/label_image2.py
 ```
+
+
+# --------------------------------------------------
+#  Using Docker Tensorflow Container
+# --------------------------------------------------
+
+1) Pull tensorflow docker image
+```bash
+    # tf docker images: https://hub.docker.com/r/tensorflow/tensorflow/tags/
+    # docker pull tensorflow/tensorflow
+    docker pull tensorflow/tensorflow:nightly-py3
+
+    export docker_image_tf_py3=tensorflow/tensorflow:nightly-py3
+
+    sudo docker run --rm -it --privileged -p 6006:6006 $docker_image_tf_py3
+
+```
+2) Install libraries
+```bash
+
+     apt-get update
+
+     apt-get install sudo
+
+     sudo apt-get update
+
+     sudo apt-get -y install python3-pip
+
+     pip3 install https://dl.google.com/coral/python/tflite_runtime-2.1.0.post1-cp35-cp35m-linux_x86_64.whl
+
+     pip3 --version
+
+     sudo pip3 install Pillow
+
+     pip3 install six
+
+     python3.7 -m pip install pip
+
+    sudo apt-get install git
+```
+3) Install libararies per 
+#  References:
+#      1) https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md
+#      2) https://colab.research.google.com/github/tensorflow/models/blob/master/research/object_detection/object_detection_tutorial.ipynb#scrollTo=awjrpqy-6MaQ
+
+```bash
+    sudo apt-get install protobuf-compiler python-pil python-lxml python-tk
+    pip install --user Cython
+    pip install --user contextlib2
+    pip install --user jupyter
+    pip install --user matplotlib
+
+```
+
+4) Git clone tensorflow models
+```bash
+    mkdir tensorflow
+    cd tensorflow
+
+    git clone https://github.com/tensorflow/models
+
+```
+
+5) Download CoCo API
+```bash
+    git clone https://github.com/cocodataset/cocoapi.git
+    cd cocoapi/PythonAPI
+    make
+    cp -r pycocotools /tensorflow/models/research/
+```
+6) Protobuf Compilation - Tensorflow Object Detection API uses Protobufs to configure model and training parameters. Before the framework can be used, the Protobuf libraries must be compiled
+```bash
+    cd /tensorflow/models/research/
+
+    protoc object_detection/protos/*.proto --python_out=.
+
+    export PYTHONPATH=$PYTHONPATH:pwd:pwd/slim
+```
+7) Run test
+```bash
+    python object_detection/utils/label_map_util_test.py
+
+    python3 object_detection/utils/label_map_util_test.py
+```
+
+
+8) Download cards-training into tensorflow/models/research
+```bash
+
+    git clone https://github.com/mmmwembe/cards-training.git
+
+```
+9) Download detect.tflite, labelmap.pbtxt, labels.txt and test images to /tmp
+
+```bash
+
+	gcloud init
+
+	export BUCKET=tpu-cards-training
+
+    # From tensorflow/models/research
+    # https://colab.research.google.com/drive/1k68pm1n-S1dhmdEVnS_8_4sMI0NvxFcg#scrollTo=Zc35e5IX2BQX
+    echo $PYTHONPATH
+    export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+    export PYTHONPATH=${PYTHONPATH}:${PWD}/:${PWD}/models
+    export PYTHONPATH=${PYTHONPATH}:${PWD}/:${PWD}/cards-training
+    echo $PYTHONPATH
+    
+
+    cp cards-training/detector/detect.tflite /tmp/
+
+    cp cards-training/images/real-test/* /tmp/
+
+    cp cards-training/labels/labels.txt /tmp/
+
+    cp cards-training/labels/labelmap.pbtxt /tmp/
+
+```
+
+10) Run label_image2.py
+```bash
+    python3 cards-training/label_image2.py
+```
