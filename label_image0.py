@@ -27,7 +27,7 @@ import tensorflow as tf # TF2
 # import tflite_runtime.interpreter as tflite
 
 # patch tf1 into `utils.ops`
-utils_ops.tf = tf.compat.v1
+# utils_ops.tf = tf.compat.v1
 
 # Patch the location of gfile
 tf.gfile = tf.io.gfile
