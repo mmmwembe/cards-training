@@ -642,7 +642,15 @@ C) Run label_image.py
 
 ```
 
-10) Run label_image2.py
+10) Run label_image.py and variations of this
+
+
 ```bash
+    # OPTION 1 - Run label_image2.py
     python3 cards-training/label_image2.py
+
+    # OPTION 2 - Run label_image0.py
+    python3 cards-training/label_image0.py
+
+       
 ```

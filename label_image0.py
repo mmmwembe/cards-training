@@ -136,7 +136,7 @@ if __name__ == '__main__':
   num_boxes = interpreter.get_tensor(output_details[2]['index'])
 
   num = int(interpreter.get_tensor(output_details[3]['index'])[0])
-  label_map = label_map_util.load_labelmap(path_to_labelmap=args.labelmap)
+  label_map = label_map_util.load_labelmap(PATH_TO_LABELS=args.labelmap)
   categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=args.num_labels, use_display_name=True)
   category_index = label_map_util.create_category_index(categories)
 
