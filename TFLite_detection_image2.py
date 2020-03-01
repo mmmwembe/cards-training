@@ -175,7 +175,7 @@ for image_path in images:
             cv2.putText(image, label, (xmin, label_ymin-7), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 0), 2) # Draw label text
 
     # All the results have been drawn on the image, now display the image
-    cv2.imshow('Object detector', image)
+    # cv2.imshow('Object detector', image)
     
     filename = os.path.basename(image_path)
     
