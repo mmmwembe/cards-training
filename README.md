@@ -551,15 +551,15 @@ C) Run label_image.py
 
      sudo apt-get -y install python3-pip
 
-     pip3 install https://dl.google.com/coral/python/tflite_runtime-2.1.0.post1-cp35-cp35m-linux_x86_64.whl
+     # pip3 install https://dl.google.com/coral/python/tflite_runtime-2.1.0.post1-cp35-cp35m-linux_x86_64.whl
 
-     pip3 --version
+     # pip3 --version
 
      sudo pip3 install Pillow
 
      pip3 install six
 
-     python3.7 -m pip install pip
+     #python3.7 -m pip install pip
 
     sudo apt-get install git
 ```
@@ -618,19 +618,6 @@ C) Run label_image.py
 9) Download detect.tflite, labelmap.pbtxt, labels.txt and test images to /tmp
 
 ```bash
-
-	gcloud init
-
-	export BUCKET=tpu-cards-training
-
-    # From tensorflow/models/research
-    # https://colab.research.google.com/drive/1k68pm1n-S1dhmdEVnS_8_4sMI0NvxFcg#scrollTo=Zc35e5IX2BQX
-    echo $PYTHONPATH
-    export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
-    export PYTHONPATH=${PYTHONPATH}:${PWD}/:${PWD}/models
-    export PYTHONPATH=${PYTHONPATH}:${PWD}/:${PWD}/cards-training
-    echo $PYTHONPATH
-    
 
     cp cards-training/detector/detect.tflite /tmp/
 
